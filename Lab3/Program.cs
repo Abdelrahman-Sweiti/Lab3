@@ -1,6 +1,10 @@
-﻿namespace Lab3
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+
+namespace Lab3
 {
-    internal class Program
+    public  class Program
     {
         static void Main(string[] args)
         {
@@ -14,6 +18,7 @@
             Challenge8();
             Challenge9();
         }
+
         static void Challenge1()
         {
             Console.WriteLine("Challenge 1");
@@ -180,7 +185,7 @@
 
         static void SaveWordToFile(string word)
         {
-            using (StreamWriter writer = new StreamWriter("words.txt", true))
+            using (StreamWriter writer = new StreamWriter("word.txt", true))
             {
                 writer.WriteLine(word);
             }
@@ -189,13 +194,13 @@
         static void Challenge7()
         {
             Console.WriteLine("Challenge 7");
-            Console.WriteLine("Contents of words.txt:");
+            Console.WriteLine("Contents of word.txt:");
             ReadFileContents();
         }
 
         static void ReadFileContents()
         {
-            using (StreamReader reader = new StreamReader("words.txt"))
+            using (StreamReader reader = new StreamReader("word.txt"))
             {
                 string line;
                 while ((line = reader.ReadLine()) != null)
@@ -208,15 +213,15 @@
         static void Challenge8()
         {
             Console.WriteLine("Challenge 8");
-            Console.WriteLine("Removing a word from words.txt...");
-            RemoveWordFromFile("example");
+            Console.WriteLine("Removing a word from word.txt...");
+            RemoveWordFromFile("hello");
         }
 
         static void RemoveWordFromFile(string wordToRemove)
         {
             string tempFile = Path.GetTempFileName();
 
-            using (StreamReader reader = new StreamReader("words.txt"))
+            using (StreamReader reader = new StreamReader("word.txt"))
             using (StreamWriter writer = new StreamWriter(tempFile))
             {
                 string line;
@@ -229,11 +234,11 @@
                 }
             }
 
-            File.Delete("words.txt");
-            File.Move(tempFile, "words.txt");
+            File.Delete("word.txt");
+            File.Move(tempFile, "word.txt");
         }
 
-        static void Challenge9()
+       public static void Challenge9()
         {
             Console.WriteLine("Challenge 9");
             Console.WriteLine("Please enter a sentence:");
@@ -246,9 +251,9 @@
             }
         }
 
-        static string[] GetWordCharacterCounts(string sentence)
+       public static string[] GetWordCharacterCounts(string sentence)
         {
-            string[] words = sentence.Split(' ');
+            string[] words = sentence.Split(new[] { ' ', ',', '.', '!', '?' }, StringSplitOptions.RemoveEmptyEntries);
 
             string[] wordArray = new string[words.Length];
 
@@ -261,6 +266,7 @@
 
             return wordArray;
         }
+
 
     }
 }
