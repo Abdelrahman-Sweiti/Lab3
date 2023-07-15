@@ -4,6 +4,64 @@ namespace TestProject1
 {
     public class UnitTest1
     {
+
+        [Fact]
+        public void Test_ProductOfAllNumbers()
+        {
+            // Arrange
+            string input = "4 8 15";
+
+            // Act
+            decimal result = Lab3.Program.MultiplyNumbers(input);
+
+            // Assert
+            Assert.Equal(480, result);
+        }
+
+        [Fact]
+        public void Test_MoreThanThreeNumbers()
+        {
+            // Arrange
+            string input = "4 8 15 16 23";
+
+            // Act
+            decimal result = Lab3.Program.MultiplyNumbers(input);
+
+            // Assert
+            Assert.Equal(480, result);
+        }
+
+        [Fact]
+        public void Test_LessThanThreeNumbers()
+        {
+            // Arrange
+            string input = "4 8";
+
+            // Act
+            decimal result = Lab3.Program.MultiplyNumbers(input);
+
+            // Assert
+            Assert.Equal(0, result);
+        }
+
+        [Fact]
+        public void Test_HandleNegativeNumbers()
+        {
+            // Arrange
+            string input = "-4 -8 -15";
+
+            // Act
+            decimal result = Lab3.Program.MultiplyNumbers(input);
+
+            // Assert
+            Assert.Equal(-480, result);
+        }
+
+
+
+
+
+
         [Fact]
         public void Challenge9_ValidInput_ReturnsWordCharacterCounts()
         {
