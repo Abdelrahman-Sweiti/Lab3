@@ -19,7 +19,7 @@ namespace Lab3
             Challenge9();
         }
 
-        static void Challenge1()
+        public static void Challenge1()
         {
             Console.WriteLine("Challenge 1");
             Console.WriteLine("Please enter 3 numbers:");
@@ -28,13 +28,18 @@ namespace Lab3
             Console.WriteLine($"The product of these 3 numbers is: {product}");
         }
 
-        static decimal MultiplyNumbers(string input)
+        public static decimal MultiplyNumbers(string input)
         {
             string[] numbers = input.Split(' ');
 
+            if (numbers.Length < 3) 
+            {
+                return 0; 
+            }
+
             decimal product = 1;
 
-            for (int i = 0; i < 3 && i < numbers.Length; i++)
+            for (int i = 0; i < 3; i++)
             {
                 if (decimal.TryParse(numbers[i], out decimal number))
                 {
@@ -49,14 +54,14 @@ namespace Lab3
             return product;
         }
 
-        static void Challenge2()
+        public static void Challenge2()
         {
             Console.WriteLine("Challenge 2");
             Console.WriteLine("Please enter a number between 2-10:");
             string input = Console.ReadLine();
             if (int.TryParse(input, out int count) && count >= 2 && count <= 10)
             {
-                double average = FindAverage(count);
+                int average = FindAverage(count);
                 Console.WriteLine($"The average of these {count} numbers is: {average}");
             }
             else
@@ -65,20 +70,20 @@ namespace Lab3
             }
         }
 
-        static double FindAverage(int count)
+       public static int FindAverage(int count)
         {
-            double sum = 0;
+            int sum = 0;
             for (int i = 1; i <= count; i++)
             {
                 Console.Write($"{i} of {count} - Enter a number: ");
                 string input = Console.ReadLine();
-                if (double.TryParse(input, out double number) && number >= 0)
+                if (int.TryParse(input, out int number) && number >= 0)
                 {
                     sum += number;
                 }
                 else
                 {
-                    Console.WriteLine("Invalid input. Please enter a non-negative number.");
+                    Console.WriteLine("Invalid input. Please enter a non-negative integer.");
                     i--;
                 }
             }
